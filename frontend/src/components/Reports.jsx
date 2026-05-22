@@ -103,8 +103,8 @@ export default function Reports({ user }) {
         // Let's first write `Reports.jsx` assuming it makes a call to `/api/sessions/${sessionId}/attendance` which is standard. We will implement the endpoint in `server.js` right after.
       }
       
-      // Let's fetch the detail:
-      const responseDetail = await fetch(`/api/sessions/${sessionId}/attendance`).then(r => r.json());
+      // Fetch session details from the api wrapper
+      const responseDetail = await api.getSessionAttendance(sessionId);
       if (responseDetail.success) {
         setSessionDetail(responseDetail.data);
         setActiveSessionId(sessionId);
@@ -122,10 +122,22 @@ export default function Reports({ user }) {
     loadSessions();
   }, [selectedClassId]);
 
-  const handleExportCSV = () => {
+  const handleExportCSV = async () => {
     if (!selectedClassId) return;
-    // Direct window open to download CSV
-    window.open(`/api/reports/export/${selectedClassId}`);
+    try {
+      const csvContent = await api.exportClassCSV(selectedClassId);
+      // Create blob with UTF-8 BOM (\uFEFF / [0xEF, 0xBB, 0xBF]) for Excel compatibility
+      const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `reporte_${selectedClassId}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      setError('Error al exportar reporte.');
+    }
   };
 
   if (loading && classes.length === 0) {
