@@ -1,0 +1,44 @@
+[
+  {
+    "id": "admin",
+    "name": "Administrador General",
+    "role": "admin",
+    "passwordHash": "$2b$10$u3EFPjSR9iQaIxbt5IZ9PuRQotlNDhVdj2M3Ssp8Va1GCJhDSQFbG"
+  },
+  {
+    "id": "prof_gomez",
+    "name": "Prof. Roberto Gómez",
+    "role": "teacher",
+    "passwordHash": "$2b$10$MGJ9vDBHq2a67OIaYBRcXeOvf7StASC3XCciIdzysOomuj6XUaUN6"
+  },
+  {
+    "id": "prof_rodriguez",
+    "name": "Dra. Patricia Rodríguez",
+    "role": "teacher",
+    "passwordHash": "$2b$10$ZEWCLF5igWLm7Qwb7An83OiiZQxl9iSmjCkE6YNhkSiPI7xK/xElC"
+  },
+  {
+    "id": "20230001",
+    "name": "Carlos Pérez",
+    "role": "student",
+    "passwordHash": "$2b$10$D/nxhRXzX5Bn./wfbwRA3eE5OP2SFy6GlQahp16gs4fnZVZ4kaUb2"
+  },
+  {
+    "id": "20230002",
+    "name": "María Gómez",
+    "role": "student",
+    "passwordHash": "$2b$10$lTuePuh9XKn3tykUZ0r6eed1Hg0WayvUPHCgeppzGpunPBHwFqjPm"
+  },
+  {
+    "id": "20230003",
+    "name": "José Hernández",
+    "role": "student",
+    "passwordHash": "$2b$10$k0s/pFgT33b81yFXiCy/GOkaNWb9cEzfFBUcgmYxQOzZr3KKZpIWW"
+  },
+  {
+    "id": "20230004",
+    "name": "Ana Ruiz",
+    "role": "student",
+    "passwordHash": "$2b$10$/qe602NE/kHYjGV5f/Bs5.AD6gvYSk9XdU9es1Uk7XfAtyKYuphPC"
+  }
+]

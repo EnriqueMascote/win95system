@@ -1,0 +1,36 @@
+[
+  {
+    "id": "clase-mat-101",
+    "name": "Matemáticas I",
+    "schedule": "Lunes y Miércoles 08:00 - 10:00",
+    "teacherId": "prof_gomez",
+    "teacherName": "Prof. Roberto Gómez",
+    "students": [
+      {
+        "id": "20230001",
+        "name": "Carlos Pérez"
+      },
+      {
+        "id": "20230002",
+        "name": "María Gómez"
+      }
+    ]
+  },
+  {
+    "id": "clase-his-201",
+    "name": "Historia de México",
+    "schedule": "Martes y Jueves 10:00 - 12:00",
+    "teacherId": "prof_rodriguez",
+    "teacherName": "Dra. Patricia Rodríguez",
+    "students": [
+      {
+        "id": "20230003",
+        "name": "José Hernández"
+      },
+      {
+        "id": "20230004",
+        "name": "Ana Ruiz"
+      }
+    ]
+  }
+]

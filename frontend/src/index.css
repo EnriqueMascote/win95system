@@ -1,0 +1,924 @@
+/* Windows 95 System Fonts & Reset */
+@font-face {
+  font-family: 'MS Sans Serif';
+  src: local('MS Sans Serif'), local('Tahoma'), local('Arial');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  image-rendering: pixelated;
+  user-select: none;
+}
+
+body {
+  font-family: 'MS Sans Serif', -apple-system, BlinkMacSystemFont, Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  background-color: var(--win-desktop-bg);
+  overflow: hidden;
+  color: var(--win-text);
+  height: 100vh;
+  width: 100vw;
+}
+
+input, button, select, textarea {
+  font-family: 'MS Sans Serif', -apple-system, BlinkMacSystemFont, Tahoma, Arial, sans-serif;
+  font-size: 12px;
+}
+
+/* -------------------------------------------------------------
+   THEME STYLES (Windows Schemes)
+   ------------------------------------------------------------- */
+:root, .win-classic {
+  --win-bg: #c0c0c0;
+  --win-face: #dfdfdf;
+  --win-text: #000000;
+  --win-text-disabled: #808080;
+  --win-input-bg: #ffffff;
+  --win-input-text: #000000;
+  --win-title-bg: #000080;
+  --win-title-text: #ffffff;
+  --win-title-bg-inactive: #808080;
+  --win-title-text-inactive: #c0c0c0;
+  --win-desktop-bg: #008080; /* Teal */
+  
+  --win-border-light: #ffffff;
+  --win-border-shadow: #808080;
+  --win-border-dark: #000000;
+  
+  --win-select-bg: #000080;
+  --win-select-text: #ffffff;
+  
+  --desktop-icon-text: #ffffff;
+  --desktop-icon-shadow: rgba(0, 0, 0, 0.5);
+}
+
+.win-dark-slate {
+  --win-bg: #2d2d2d;
+  --win-face: #3c3c3c;
+  --win-text: #ffffff;
+  --win-text-disabled: #666666;
+  --win-input-bg: #1a1a1a;
+  --win-input-text: #ffffff;
+  --win-title-bg: #5a189a; /* Indigo Dark */
+  --win-title-text: #ffffff;
+  --win-title-bg-inactive: #4d4d4d;
+  --win-title-text-inactive: #888888;
+  --win-desktop-bg: #0a1717; /* Dark Teal */
+  
+  --win-border-light: #505050;
+  --win-border-shadow: #1e1e1e;
+  --win-border-dark: #000000;
+  
+  --win-select-bg: #7b2cbf;
+  --win-select-text: #ffffff;
+  
+  --desktop-icon-text: #e0e0e0;
+  --desktop-icon-shadow: rgba(0, 0, 0, 0.9);
+}
+
+/* -------------------------------------------------------------
+   RETRO BORDERS & SHADOWS
+   ------------------------------------------------------------- */
+.win-outset {
+  background-color: var(--win-bg);
+  border-top: 1.5px solid var(--win-border-light);
+  border-left: 1.5px solid var(--win-border-light);
+  border-right: 1.5px solid var(--win-border-shadow);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  box-shadow: 1px 1px 0px var(--win-border-dark);
+}
+
+.win-inset {
+  background-color: var(--win-input-bg);
+  color: var(--win-input-text);
+  border-top: 1.5px solid var(--win-border-shadow);
+  border-left: 1.5px solid var(--win-border-shadow);
+  border-right: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-light);
+  box-shadow: inset 1px 1px 0px var(--win-border-dark);
+}
+
+.win-double-inset {
+  border-top: 2px solid var(--win-border-shadow);
+  border-left: 2px solid var(--win-border-shadow);
+  border-right: 2px solid var(--win-border-light);
+  border-bottom: 2px solid var(--win-border-light);
+}
+
+/* -------------------------------------------------------------
+   CORE COMPONENTS
+   ------------------------------------------------------------- */
+
+/* Button */
+.win-button {
+  background-color: var(--win-bg);
+  border-top: 1.5px solid var(--win-border-light);
+  border-left: 1.5px solid var(--win-border-light);
+  border-right: 1.5px solid var(--win-border-shadow);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  box-shadow: 1px 1px 0px var(--win-border-dark);
+  padding: 4px 12px;
+  color: var(--win-text);
+  cursor: pointer;
+  outline: none;
+  font-weight: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.win-button:active {
+  border-top: 1.5px solid var(--win-border-shadow);
+  border-left: 1.5px solid var(--win-border-shadow);
+  border-right: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-light);
+  box-shadow: none;
+  padding: 5px 11px 3px 13px; /* Shifts text 1px down/right */
+}
+
+.win-button:disabled {
+  color: var(--win-text-disabled);
+  cursor: not-allowed;
+  box-shadow: 1px 1px 0px var(--win-border-dark);
+  border-color: var(--win-border-light) var(--win-border-shadow) var(--win-border-shadow) var(--win-border-light);
+}
+
+.win-button:disabled:active {
+  padding: 4px 12px;
+  border-top: 1.5px solid var(--win-border-light);
+  border-left: 1.5px solid var(--win-border-light);
+  border-right: 1.5px solid var(--win-border-shadow);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  box-shadow: 1px 1px 0px var(--win-border-dark);
+}
+
+/* Fields & Input */
+.win-input {
+  padding: 4px 6px;
+  outline: none;
+  background-color: var(--win-input-bg);
+  color: var(--win-input-text);
+  border-top: 1.5px solid var(--win-border-shadow);
+  border-left: 1.5px solid var(--win-border-shadow);
+  border-right: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-light);
+  box-shadow: inset 1px 1px 0px var(--win-border-dark);
+  font-family: inherit;
+  font-size: 12px;
+  width: 100%;
+}
+
+.win-input:focus {
+  outline: 1px dotted var(--win-text);
+  outline-offset: -3px;
+}
+
+/* Dropdowns */
+.win-select {
+  padding: 3px 20px 3px 4px;
+  outline: none;
+  background-color: var(--win-input-bg);
+  color: var(--win-input-text);
+  border-top: 1.5px solid var(--win-border-shadow);
+  border-left: 1.5px solid var(--win-border-shadow);
+  border-right: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-light);
+  box-shadow: inset 1px 1px 0px var(--win-border-dark);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Fieldset */
+.win-fieldset {
+  border: 1.5px solid var(--win-border-light);
+  box-shadow: -1px -1px 0px var(--win-border-shadow),
+              inset 1px 1px 0px var(--win-border-shadow),
+              inset -1px -1px 0px var(--win-border-light);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.win-legend {
+  padding: 0 6px;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------------------
+   DESKTOP & TASKBAR SHELL
+   ------------------------------------------------------------- */
+.desktop-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--win-desktop-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Icons Grid */
+.desktop-grid {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 25px;
+  position: relative;
+  height: calc(100vh - 40px);
+}
+
+.desktop-icon {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  gap: 5px;
+  border: 1px transparent solid;
+}
+
+.desktop-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px dotted rgba(255, 255, 255, 0.3);
+}
+
+.desktop-icon-image {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-icon-label {
+  color: var(--desktop-icon-text);
+  font-size: 11px;
+  font-weight: normal;
+  text-shadow: 1px 1px 1px var(--desktop-icon-shadow);
+  word-break: break-word;
+  max-width: 75px;
+  padding: 1px 3px;
+}
+
+.desktop-icon.selected .desktop-icon-label {
+  background-color: var(--win-select-bg);
+  color: var(--win-select-text);
+  text-shadow: none;
+}
+
+/* Taskbar */
+.taskbar {
+  height: 40px;
+  background-color: var(--win-bg);
+  border-top: 2px solid var(--win-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 6px;
+  z-index: 10000;
+  position: relative;
+}
+
+.taskbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taskbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.start-button {
+  font-weight: bold;
+  font-size: 13px;
+  padding: 2px 10px;
+}
+
+.start-button-logo {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Clock in Taskbar */
+.taskbar-clock {
+  padding: 4px 10px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 75px;
+  justify-content: center;
+}
+
+/* Start Menu */
+.start-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 2px;
+  width: 180px;
+  z-index: 10001;
+  display: flex;
+}
+
+.start-menu-sidebar {
+  width: 25px;
+  background: linear-gradient(180deg, #000080 0%, #808080 100%);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.start-menu-list {
+  flex: 1;
+  list-style: none;
+  background-color: var(--win-bg);
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.start-menu-item:hover {
+  background-color: var(--win-select-bg);
+  color: var(--win-select-text);
+}
+
+.start-menu-divider {
+  height: 1.5px;
+  background-color: var(--win-border-shadow);
+  border-bottom: 1.5px solid var(--win-border-light);
+  margin: 4px 0;
+}
+
+/* Open Windows List in Taskbar */
+.taskbar-windows {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  max-width: 60%;
+}
+
+.taskbar-window-btn {
+  width: 120px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  justify-content: flex-start;
+  font-size: 11px;
+  padding: 3px 6px;
+}
+
+.taskbar-window-btn.active {
+  background-color: var(--win-face);
+  border-top: 1.5px solid var(--win-border-shadow);
+  border-left: 1.5px solid var(--win-border-shadow);
+  border-right: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-light);
+  box-shadow: none;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------------------
+   DRAGGABLE WINDOW COMPONENT
+   ------------------------------------------------------------- */
+.win-window {
+  position: absolute;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.win-titlebar {
+  background-color: var(--win-title-bg);
+  color: var(--win-title-text);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  font-weight: bold;
+  height: 24px;
+}
+
+.win-window.inactive .win-titlebar {
+  background-color: var(--win-title-bg-inactive);
+  color: var(--win-title-text-inactive);
+}
+
+.win-titlebar-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win-titlebar-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.win-titlebar-btn {
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.win-menu-bar {
+  display: flex;
+  background-color: var(--win-bg);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  padding: 2px 6px;
+  gap: 12px;
+}
+
+.win-menu-item {
+  cursor: pointer;
+  padding: 1px 4px;
+}
+
+.win-menu-item:hover {
+  background-color: var(--win-select-bg);
+  color: var(--win-select-text);
+}
+
+.win-window-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background-color: var(--win-bg);
+}
+
+/* -------------------------------------------------------------
+   ROLES PANELS & INTERNALS
+   ------------------------------------------------------------- */
+
+/* Log In Box */
+.login-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--win-desktop-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+}
+
+.login-dialog {
+  width: 380px;
+}
+
+.login-header-banner {
+  height: 60px;
+  background: linear-gradient(90deg, #000080 0%, #008080 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 2px solid var(--win-border-dark);
+}
+
+.login-body {
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.login-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Table styling (Retro 3D grid) */
+.win-table-container {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.win-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.win-table th {
+  background-color: var(--win-bg);
+  border-top: 1.5px solid var(--win-border-light);
+  border-left: 1.5px solid var(--win-border-light);
+  border-right: 1.5px solid var(--win-border-shadow);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  padding: 4px 6px;
+  font-weight: bold;
+}
+
+.win-table td {
+  padding: 4px 6px;
+  border: 1px solid var(--win-border-light);
+  background-color: var(--win-input-bg);
+  color: var(--win-input-text);
+}
+
+.win-table tr:hover td {
+  background-color: var(--win-select-bg);
+  color: var(--win-select-text);
+}
+
+/* Global summary cards */
+.admin-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.metric-card {
+  padding: 10px;
+  text-align: center;
+}
+
+.metric-num {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: var(--win-title-bg);
+}
+
+/* Custom 3D retro bar charts */
+.chart-container {
+  padding: 12px;
+  height: 200px;
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 150px;
+  gap: 15px;
+  border-bottom: 2px solid var(--win-border-shadow);
+  padding: 0 10px;
+}
+
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.bar-fill {
+  width: 30px;
+  background: linear-gradient(90deg, #0000ff 0%, #000080 100%);
+  border-top: 1.5px solid var(--win-border-light);
+  border-left: 1.5px solid var(--win-border-light);
+  border-right: 1.5px solid var(--win-border-dark);
+  box-shadow: 1px 0px 0px var(--win-border-shadow);
+  transition: height 0.5s ease-out;
+}
+
+.bar-label {
+  font-size: 10px;
+  margin-top: 5px;
+  text-align: center;
+  max-width: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* -------------------------------------------------------------
+   STUDENT PORTAL (NETSCAPE THEME)
+   ------------------------------------------------------------- */
+.netscape-container {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--win-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.netscape-header {
+  background-color: var(--win-bg);
+  border-bottom: 2px solid var(--win-border-shadow);
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.netscape-titlebar {
+  background: linear-gradient(90deg, #000080 0%, #4a148c 100%);
+  color: #ffffff;
+  padding: 4px 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.netscape-menubar {
+  display: flex;
+  gap: 10px;
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+.netscape-toolbar {
+  display: flex;
+  padding: 4px;
+  gap: 3px;
+  background-color: var(--win-bg);
+  border-top: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  flex-wrap: wrap;
+}
+
+.netscape-tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 6px;
+  min-width: 48px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.netscape-logo-container {
+  display: flex;
+  margin-left: auto;
+  align-self: center;
+  padding-right: 5px;
+}
+
+.netscape-n-logo {
+  width: 24px;
+  height: 24px;
+  background-color: #000;
+  color: #00ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 18px;
+  border: 1.5px solid var(--win-border-light);
+  box-shadow: inset 1px 1px 0px var(--win-border-shadow);
+  animation: logo-pulsate 1.5s infinite alternate;
+}
+
+@keyframes logo-pulsate {
+  0% { transform: scale(0.9); background-color: #000; }
+  100% { transform: scale(1.1); background-color: #003300; }
+}
+
+.netscape-address-bar {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  gap: 6px;
+  background-color: var(--win-bg);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+}
+
+.netscape-address-label {
+  font-weight: bold;
+}
+
+.netscape-address-input {
+  flex: 1;
+}
+
+.netscape-content {
+  flex: 1;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Netscape specific HTML styles inside Netscape content */
+.netscape-page {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.netscape-h1 {
+  font-size: 24px;
+  border-bottom: 2px solid #000080;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  color: #000080;
+  text-align: center;
+}
+
+.netscape-hr {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff0000, #0000ff);
+  margin: 15px 0;
+}
+
+.netscape-form-group {
+  margin-bottom: 15px;
+}
+
+.netscape-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.netscape-checkin-btn {
+  background-color: #dfdfdf;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.netscape-checkin-btn:active {
+  border-color: #808080 #fff #fff #808080;
+}
+
+/* Success panel animation */
+.success-checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  border: 4px solid #008000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #008000;
+  animation: bounce-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Tab controls for Student records vs checkin */
+.netscape-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #808080;
+}
+
+.netscape-tab {
+  padding: 6px 12px;
+  background-color: #dfdfdf;
+  border: 2px solid #808080;
+  border-bottom: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+.netscape-tab.active {
+  background-color: #ffffff;
+  border-color: #000000;
+  border-bottom: 2px solid #ffffff;
+  margin-bottom: -2px;
+}
+
+/* Context Menu popup */
+.context-menu {
+  position: absolute;
+  width: 120px;
+  background-color: var(--win-bg);
+  z-index: 15000;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  list-style: none;
+}
+
+.context-menu-item {
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.context-menu-item:hover {
+  background-color: var(--win-select-bg);
+  color: var(--win-select-text);
+}
+
+/* System metrics list styling */
+.system-meter-bg {
+  height: 12px;
+  background-color: var(--win-input-bg);
+  border: 1px solid var(--win-border-shadow);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.system-meter-fill {
+  height: 100%;
+  background-color: var(--win-title-bg);
+}
+
+/* Double click instructions help box */
+.desktop-help-banner {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 260px;
+  padding: 10px;
+  font-size: 11px;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.desktop-help-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAD0lEQVQIW2M4cODAfwYgAADTxgIDpe5B6AAAAABJRU5ErkJggg==") repeat;
+  background-color: var(--win-face);
+  box-shadow: inset 1px 1px 0px var(--win-border-shadow);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--win-bg);
+  border-top: 1.5px solid var(--win-border-light);
+  border-left: 1.5px solid var(--win-border-light);
+  border-right: 1.5px solid var(--win-border-shadow);
+  border-bottom: 1.5px solid var(--win-border-shadow);
+  box-shadow: 1px 1px 0px var(--win-border-dark);
+}
+
+::-webkit-scrollbar-thumb:active {
+  border-top: 1.5px solid var(--win-border-shadow);
+  border-left: 1.5px solid var(--win-border-shadow);
+  border-right: 1.5px solid var(--win-border-light);
+  border-bottom: 1.5px solid var(--win-border-light);
+}
